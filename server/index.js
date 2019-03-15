@@ -5,7 +5,8 @@ const keys = require('./config/keys');
 
 const app = express();
 
-mongoose.connect(keys.mongoURI);
+// Add setting to useNewUrlParser. This can also be set globally.
+mongoose.connect(keys.mongoURI,  { useNewUrlParser: true });
 
 app.get('/', (req, res)=>{
     res.send({hello: 'there'});
