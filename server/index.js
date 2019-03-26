@@ -5,7 +5,10 @@ const keys = require('./config/keys');
 
 const app = express();
 
-mongoose.connect(keys.mongoURI);
+// Add setting to useNewUrlParser. This can also be set globally.
+mongoose.connect(keys.mongoURI,  { useNewUrlParser: true }).then(() => {
+    console.log('established database connection successfully');
+}, err => console.log('something went wrong when connecting to database'));
 
 app.get('/', (req, res)=>{
     res.send({hello: 'there'});
