@@ -1,7 +1,9 @@
 import React from 'react';
 
-export const QuestionHeader = () => {
+export const QuestionHeader = ({title}) => {
     return(
-        <div>Question Header</div>
+        <div>
+            <h1>{title}</h1>
+        </div>
     )
 };

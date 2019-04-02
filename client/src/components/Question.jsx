@@ -6,8 +6,15 @@ class Question extends React.Component {
     render() {
         return (
             <div>
-                <QuestionHeader/>
-                Question
+
+                {this.props.questions.map(question => (
+                    <div>
+                        <QuestionHeader title={question.title} />
+                        <h1>{question.title}</h1>
+                    </div>
+
+                ))}
+                Question {this.props.name}
             </div>
         )
     }
