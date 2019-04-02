@@ -3,21 +3,27 @@ import React, { Component } from 'react';
 // import { faIgloo } from '@fortawesome/free-solid-svg-icons';
 // library.add(faIgloo)
 
+import {store} from "../store";
+import {Provider} from 'react-redux';
+
 import Navigation from '../components/Navigation';
-import QuestionList from '../components/QuestionList';
+import {ConnectedQuestionList} from '../components/QuestionList';
 import SearchBar from '../components/SearchBar';
+
 
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navigation/>
-        Chingus for the win!
-        <SearchBar />
-        <QuestionList />
-      </div>
+        <Provider store={store}>
+          <div className="App">
+            <Navigation/>
+            Chingus for the win!
+            <SearchBar />
+            <ConnectedQuestionList />
+          </div>
+        </Provider>
     );
   }
 }
