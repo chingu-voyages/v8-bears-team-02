@@ -1,17 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const port = 5000;
-const keys = require('./config/keys');
+const bodyParser = require('body-parser');
+const port = process.env.PORT || 5000;
+
+const user = require('./routes/api/user');
 
 const app = express();
 
-// Add setting to useNewUrlParser. This can also be set globally.
-mongoose.connect(keys.mongoURI,  { useNewUrlParser: true }).then(() => {
-    console.log('established database connection successfully');
-}, err => console.log('something went wrong when connecting to database'));
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.get('/', (req, res)=>{
-    res.send({hello: 'there'});
+// DB config
+const db = require('./config/keys').mongoURI;
+
+// Connect to mongoDb
+mongoose
+    .connect(db, { useNewUrlParser: true })
+    .then(() => console.log('mongodb connected'))
+    .catch(err => console.log(err));
+
+app.get('/', (req, res) => {
+    res.send({ hello: 'there' });
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// Use Routes
+app.use('/api/user', user);
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
