@@ -18,10 +18,16 @@ class App extends Component {
     return (
         <Provider store={store}>
           <div className="App">
-            <Navigation/>
-            Chingus for the win!
-            <SearchBar />
-            <ConnectedQuestionList />
+              <div className="logo">
+                  <h1>Logo</h1>
+              </div>
+              <SearchBar />
+              <Navigation/>
+
+              Chingus for the win!
+
+
+              <ConnectedQuestionList />
           </div>
         </Provider>
     );

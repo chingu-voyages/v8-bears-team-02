@@ -4,5 +4,11 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.logo {
+  position: absolute;
+  top:0;
+  left: 0;
+}
+
 /* Add Global styles here */
 
