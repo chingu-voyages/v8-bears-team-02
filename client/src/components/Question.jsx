@@ -10,7 +10,6 @@ class Question extends React.Component {
                 {this.props.questions.map(question => (
                     <div>
                         <QuestionHeader title={question.title} />
-                        <h1>{question.title}</h1>
                     </div>
 
                 ))}

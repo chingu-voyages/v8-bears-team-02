@@ -9,7 +9,12 @@ export const defaultState = {
         id:123,
         category:1,
         owner: "user1",
-        title:"Let me ask you something"
+        title:"Why is my class failing to compile?"
+    },{
+        id:124,
+        category:1,
+        owner: "user1",
+        title:"How to declare a global variable?"
     }],
     answers:[{
         id:123,
