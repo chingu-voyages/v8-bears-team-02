@@ -8,7 +8,7 @@ class Question extends React.Component {
             <div>
 
                 {this.props.questions.map(question => (
-                    <div>
+                    <div className="card">
                         <QuestionHeader title={question.title} />
                     </div>
 
