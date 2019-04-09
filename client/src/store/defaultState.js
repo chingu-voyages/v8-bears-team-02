@@ -1,9 +1,14 @@
 export const defaultState = {
+    session: {
+      authenticated: false
+    },
     users: [{
         id: "user1",
         email:"tomjones@gmail.com",
         name:"Thomas Jones",
-        password:"mrT123"
+        password:"mrT123",
+        rank: 10,
+        date: '1/1/2019'
     }],
     questions:[{
         id:123,
