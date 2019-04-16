@@ -1,19 +1,16 @@
 import React from 'react';
 
-import {QuestionHeader} from './QuestionHeader';
-
 class Question extends React.Component {
     render() {
         return (
             <div>
-
                 {this.props.questions.map(question => (
-                    <div className="card">
-                        <QuestionHeader title={question.title} />
+                    <div key={question.id}>
+                        {question.title}
+                        {question.content}
                     </div>
 
                 ))}
-                Question {this.props.name}
             </div>
         )
     }
