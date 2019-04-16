@@ -1,5 +1,4 @@
 import React from 'react';
-// import SearchBar from './SearchBar';
 import {connect} from "react-redux";
 
 export const Navigation = ({session}) => {
