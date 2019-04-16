@@ -6,9 +6,9 @@ import React, { Component } from 'react';
 import {store} from "../store";
 import {Provider} from 'react-redux';
 
-import Navigation from '../components/Navigation';
+import {ConnectedNavigation} from '../components/Navigation';
 import {ConnectedQuestionList} from '../components/QuestionList';
-import SearchBar from '../components/SearchBar';
+import {ConnectedNewQuestion} from "../components/NewQuestion";
 
 
 import './App.scss';
@@ -18,10 +18,13 @@ class App extends Component {
     return (
         <Provider store={store}>
           <div className="App">
-            <Navigation/>
-            Chingus for the win!
-            <SearchBar />
-            <ConnectedQuestionList />
+
+              <ConnectedNavigation/>
+
+              <ConnectedQuestionList />
+
+              <ConnectedNewQuestion/>
+
           </div>
         </Provider>
     );

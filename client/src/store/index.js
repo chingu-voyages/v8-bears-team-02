@@ -1,4 +1,5 @@
-import {combineReducers, createStore} from "redux";
+import { applyMiddleware, combineReducers, createStore} from "redux";
+import thunk from 'redux-thunk';
 import {defaultState} from "./defaultState";
 
 function reducer(state = defaultState, action) {
@@ -6,5 +7,6 @@ function reducer(state = defaultState, action) {
 }
 
 export const store = createStore(
-    combineReducers({reducer})
+    combineReducers({reducer}),
+    applyMiddleware(thunk)
 );
