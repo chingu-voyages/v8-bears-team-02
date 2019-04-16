@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 
 import {ConnectedNavigation} from '../components/Navigation';
 import {ConnectedQuestionList} from '../components/QuestionList';
-import SearchBar from '../components/SearchBar';
+import {ConnectedNewQuestion} from "../components/NewQuestion";
 
 
 import './App.scss';
@@ -22,6 +22,8 @@ class App extends Component {
               <ConnectedNavigation/>
 
               <ConnectedQuestionList />
+
+              <ConnectedNewQuestion/>
 
           </div>
         </Provider>
