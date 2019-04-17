@@ -7,7 +7,7 @@ const validateQuestionInput = require('../../validation/question');
 
 const Question = require('../../models/Question');
 
-// @route POST api/question/create
+// @route POST api/questions/create
 // @desc  Create a new question
 // @access Private
 router.post(
@@ -34,7 +34,7 @@ router.post(
     }
 );
 
-// @route GET api/question/all
+// @route GET api/questions
 // @desc  Returns all questions
 // @access Public
 router.get('/', (req, res) => {
@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
         );
 });
 
-// @route GET api/question/search
+// @route GET api/questions/search
 // @desc  Find all questions  by search query
 // @access Public
 router.post('/search', (req, res) => {
@@ -62,7 +62,7 @@ router.post('/search', (req, res) => {
         );
 });
 
-// @route GET api/question/:id
+// @route GET api/questions/:id
 // @desc  Find question by id
 // @access Public
 router.get('/:id', (req, res) => {
