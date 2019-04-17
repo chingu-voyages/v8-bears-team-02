@@ -5,10 +5,14 @@ import React, { Component } from 'react';
 
 import {store} from "../store";
 import {Provider} from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import {ConnectedNavigation} from '../components/Navigation';
 import {ConnectedQuestionList} from '../components/QuestionList';
 import {ConnectedNewQuestion} from "../components/NewQuestion";
+import Login from '../components/Login';
+
+import Register from '../components/Register';
 
 
 import './App.scss';
@@ -16,17 +20,20 @@ import './App.scss';
 class App extends Component {
   render() {
     return (
-        <Provider store={store}>
-          <div className="App">
+        <Router>
+            <Provider store={store}>
+                <div className="App">
+                    <Route exact
+                           path='/'
+                           component={ConnectedQuestionList}
+                    />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/login" component={Login} />
 
-              <ConnectedNavigation/>
+                </div>
+            </Provider>
+        </Router>
 
-              <ConnectedQuestionList />
-
-              <ConnectedNewQuestion/>
-
-          </div>
-        </Provider>
     );
   }
 }
