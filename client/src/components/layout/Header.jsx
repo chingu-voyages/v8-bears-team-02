@@ -70,10 +70,10 @@ function HeaderBar({ classes, title}) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton className={classes.menuButton} color="inherit" noWrap>
+                    <IconButton className={classes.menuButton} color="inherit" >
                         <MenuIcon/>
                     </IconButton>
-                    <Typography className={classes.tile} variant="h6" color="inherit" noWrap>
+                    <Typography className={classes.tile} variant="h6" color="inherit" >
                         {title ? title : "Ask-a-bear"}
                     </Typography>
                     <div className={classes.grow}/>
