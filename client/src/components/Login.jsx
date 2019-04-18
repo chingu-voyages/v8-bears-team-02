@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {Avatar, Button, FormControl, FormControlLabel, Input, InputLabel, Paper, Typography} from '@material-ui/core';
+import {Avatar, Button, FormControl, Input, InputLabel, Paper, Typography} from '@material-ui/core';
 import Header from './layout/Header';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import withStyles from '@material-ui/core/styles/withStyles';
