@@ -49,6 +49,25 @@ class Register extends React.Component {
         });
     };
 
+    handleRegister = e => {
+        e.preventDefault();
+        //TODO - validate inputs
+        const {
+            username,
+            email,
+            password,
+        } = this.state;
+
+        axios
+            .post('http://localhost:5000/api/user/test')
+            .then(res => {
+                console.log(res.data.message);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
     render(){
         const {
             username,
@@ -69,7 +88,7 @@ class Register extends React.Component {
                 <Fragment>
                     <Header title="User Registration" />
                     <CssBaseline />
-                    <main className={classes.layout}>
+                    <form className={classes.layout} onSubmit={this.handleRegister}>
                         <Paper className={classes.paper}>
                         <Typography variant="h6" gutterBottom>
                             User Registration
@@ -119,13 +138,14 @@ class Register extends React.Component {
                                     fullWidth
                                     variant="contained"
                                     color="primary"
+
                                 >
                                     Register
                                 </Button>
                             </Grid>
                         </Grid>
                         </Paper>
-                    </main>
+                    </form>
                 </Fragment>
             )
         }
