@@ -36,6 +36,7 @@ class Register extends React.Component {
             username: '',
             email: '',
             password: '',
+            confirmPassword: '',
             messageFromServer: '',
             showError: false,
             registerError: false,
@@ -56,16 +57,38 @@ class Register extends React.Component {
             username,
             email,
             password,
+            confirmPassword,
         } = this.state;
 
-        axios
-            .post('http://localhost:5000/api/user/test')
-            .then(res => {
-                console.log(res.data.message);
+        if(password !== confirmPassword){
+            this.setState({
+                showError: true,
+                registerError: false,
+                passwordMismatchError: true,
+                loginError: false,
             })
-            .catch(error => {
-                console.error(error);
-            })
+        } else {
+            axios
+                .post('http://localhost:5000/api/user/register', {
+                    username,
+                    email,
+                    password,
+                    confirmPassword,
+                })
+                .then(response => {
+                    console.log(response);
+                    this.setState({
+                        messageFromServer: response.data.message,
+                        showError: false,
+                        loginError: false,
+                        passwordMismatchError: false,
+                        registerError: false,
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
     }
 
     render(){
@@ -73,9 +96,11 @@ class Register extends React.Component {
             username,
             email,
             password,
+            confirmPassword,
             messageFromServer,
             showError,
             registerError,
+            passwordMismatchError,
             loginError,
         } = this.state;
 
@@ -122,14 +147,18 @@ class Register extends React.Component {
                                     label="Password"
                                     fullWidth
                                     onChange={this.handleChange('password')}
+                                    type='password'
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <TextField
                                     required
                                     id='confirmPassword'
+                                    value={confirmPassword}
                                     label="Confirm Password"
                                     fullWidth
+                                    onChange={this.handleChange('confirmPassword')}
+                                    type="password"
                                 />
                             </Grid>
                             <Grid item sx={12}>
@@ -143,6 +172,11 @@ class Register extends React.Component {
                                     Register
                                 </Button>
                             </Grid>
+                            {showError && passwordMismatchError && (
+                                <div>
+                                    <p>Password does not match</p>
+                                </div>
+                            )}
                         </Grid>
                         </Paper>
                     </form>
