@@ -3,11 +3,14 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const port = process.env.PORT || 5000;
+const cors = require('cors');
 
 const user = require('./routes/api/user');
 const question = require('./routes/api/questions');
 
 const app = express();
+
+app.use(cors());
 
 // DB config
 const db = require('./config/keys').mongoURI;
