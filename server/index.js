@@ -5,6 +5,7 @@ const passport = require('passport');
 const port = process.env.PORT || 5000;
 
 const user = require('./routes/api/user');
+const question = require('./routes/api/questions');
 
 const app = express();
 
@@ -33,5 +34,6 @@ app.get('/', (req, res) => {
 
 // Use Routes
 app.use('/api/user', user);
+app.use('/api/questions', question);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

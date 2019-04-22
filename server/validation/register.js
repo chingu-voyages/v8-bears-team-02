@@ -4,14 +4,14 @@ const isEmpty = require('./isEmpty');
 module.exports = function validateRegisterInput(data) {
     let errors = {};
 
-    data.username = !isEmpty(data.name) ? data.name : '';
+    data.username = !isEmpty(data.username) ? data.username : '';
     data.email = !isEmpty(data.email) ? data.email : '';
     data.password = !isEmpty(data.password) ? data.password : '';
     data.confirmPassword = !isEmpty(data.confirmPassword)
         ? data.confirmPassword
         : '';
 
-    if (!validator.isLength(data.name, { min: 1, max: 25 })) {
+    if (!validator.isLength(data.username, { min: 1, max: 25 })) {
         errors.username = 'Username must be between 1 and 25 characters';
     }
 
