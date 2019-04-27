@@ -11,7 +11,7 @@ const Answer = require('../../models/Answer');
 
 // /api/question routes
 
-// @route GET api/question/:id/answer/create
+// @route POST api/question/:id/answer/create
 // @desc  Create a new answer for a question
 // @access Private
 router.post(
@@ -46,6 +46,17 @@ router.post(
             );
     }
 );
+
+// @route GET api/question/:id/answers
+// @desc  Returns all answers to the question by id
+// @access PUBLIC
+router.get('/:id/answers', (req, res) => {
+    Question.findById(req.params.id)
+        .then(question => res.json(question.answers))
+        .catch(err =>
+            res.status(404).json({ noquestionfound: 'Question no found' })
+        );
+});
 
 // /api/questions routes
 
