@@ -4,6 +4,7 @@ import {Avatar, Button, FormControl, Input, InputLabel, Paper, Typography} from 
 import Header from './layout/Header';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import withStyles from '@material-ui/core/styles/withStyles';
+import axios from "axios";
 
 const styles = theme => ({
     main: {
@@ -53,6 +54,28 @@ class Login extends React.Component {
         });
     };
 
+    handleLogin = e => {
+        e.preventDefault();
+        //TODO - validate inputs
+        const {
+            email,
+            password,
+        } = this.state;
+
+        axios
+            .post('http://localhost:5000/api/user/login', {
+                email,
+                password,
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+    }
+
     render() {
         const {
             username,
@@ -74,7 +97,7 @@ class Login extends React.Component {
                         <Typography component="h1" variant="h5">
                             Log in
                         </Typography>
-                        <form className={classes.form}>
+                        <form className={classes.form} onSubmit={this.handleLogin}>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
                                 <Input
@@ -82,13 +105,20 @@ class Login extends React.Component {
                                     name="email"
                                     autoComplete="email"
                                     autoFocus
-                                    value={this.state.username}
-                                    onChange={this.handleChange('username')}
+                                    value={this.state.email}
+                                    onChange={this.handleChange('email')}
                                 />
                             </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
-                                <Input name="password" type="password" id="password" autoComplete="current-password" />
+                                <Input
+                                    name="password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    value={this.state.password}
+                                    onChange={this.handleChange('password')}
+                                />
                             </FormControl>
                             <Button
                                 type="submit"

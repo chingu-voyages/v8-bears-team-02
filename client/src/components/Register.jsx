@@ -70,6 +70,7 @@ class Register extends React.Component {
         } else {
             axios
                 .post('http://localhost:5000/api/user/register', {
+                    name: username,
                     username,
                     email,
                     password,
@@ -78,7 +79,7 @@ class Register extends React.Component {
                 .then(response => {
                     console.log(response);
                     this.setState({
-                        messageFromServer: response.data.message,
+                        messageFromServer: 'user_created',
                         showError: false,
                         loginError: false,
                         passwordMismatchError: false,
@@ -108,81 +109,90 @@ class Register extends React.Component {
             classes
         } = this.props;
 
-        if(messageFromServer === ''){
             return(
                 <Fragment>
                     <Header title="User Registration" />
                     <CssBaseline />
-                    <form className={classes.layout} onSubmit={this.handleRegister}>
-                        <Paper className={classes.paper}>
-                        <Typography variant="h6" gutterBottom>
-                            User Registration
-                        </Typography>
-                        <Grid container spacing={24}>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    required
-                                    id="username"
-                                    value={username}
-                                    label="User Name"
-                                    fullWidth
-                                    onChange={this.handleChange('username')}
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    required
-                                    id="email"
-                                    value={email}
-                                    label="Email"
-                                    fullWidth
-                                    onChange={this.handleChange('email')}
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    required
-                                    id='password'
-                                    value={password}
-                                    label="Password"
-                                    fullWidth
-                                    onChange={this.handleChange('password')}
-                                    type='password'
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    required
-                                    id='confirmPassword'
-                                    value={confirmPassword}
-                                    label="Confirm Password"
-                                    fullWidth
-                                    onChange={this.handleChange('confirmPassword')}
-                                    type="password"
-                                />
-                            </Grid>
-                            <Grid item sx={12}>
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    color="primary"
+                    {messageFromServer === '' && (
+                        <form className={classes.layout} onSubmit={this.handleRegister}>
+                            <Paper className={classes.paper}>
+                                <Typography variant="h6" gutterBottom>
+                                    User Registration
+                                </Typography>
+                                <Grid container spacing={24}>
+                                    <Grid item xs={12} md={6}>
+                                        <TextField
+                                            required
+                                            id="username"
+                                            value={username}
+                                            label="User Name"
+                                            fullWidth
+                                            onChange={this.handleChange('username')}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} md={6}>
+                                        <TextField
+                                            required
+                                            id="email"
+                                            value={email}
+                                            label="Email"
+                                            fullWidth
+                                            onChange={this.handleChange('email')}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} md={6}>
+                                        <TextField
+                                            required
+                                            id='password'
+                                            value={password}
+                                            label="Password"
+                                            fullWidth
+                                            onChange={this.handleChange('password')}
+                                            type='password'
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} md={6}>
+                                        <TextField
+                                            required
+                                            id='confirmPassword'
+                                            value={confirmPassword}
+                                            label="Confirm Password"
+                                            fullWidth
+                                            onChange={this.handleChange('confirmPassword')}
+                                            type="password"
+                                        />
+                                    </Grid>
+                                    <Grid item sx={12}>
+                                        <Button
+                                            type="submit"
+                                            fullWidth
+                                            variant="contained"
+                                            color="primary"
 
-                                >
-                                    Register
-                                </Button>
-                            </Grid>
-                            {showError && passwordMismatchError && (
-                                <div>
-                                    <p>Password does not match</p>
-                                </div>
-                            )}
-                        </Grid>
-                        </Paper>
-                    </form>
+                                        >
+                                            Register
+                                        </Button>
+                                    </Grid>
+                                    {showError && passwordMismatchError && (
+                                        <div>
+                                            <p>Password does not match</p>
+                                        </div>
+                                    )}
+                                </Grid>
+                            </Paper>
+                        </form>
+                    )}
+                    {messageFromServer === 'user_created' && (
+                        <div className={classes.layout}>
+                            <Paper className={classes.paper}>
+                                <h3>User successfully registered!</h3>
+                                <a href='/login'> Login</a>
+                            </Paper>
+                        </div>
+                    )}
                 </Fragment>
             )
-        }
+
     }
 }
 
